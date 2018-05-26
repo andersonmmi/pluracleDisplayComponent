@@ -134,11 +134,8 @@ let address = '0xd64f463affca20ea99059ba42ed13c979587a117';
 class Ticker extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
-      firstNames: [],
-      lastNames: [],
-      ages: [],
+      data: null,
       web3: null,
     }
   }
@@ -149,15 +146,21 @@ class Ticker extends Component {
     getWeb3
     .then(results => {
       // console.log('results: ', results);
-      web3 = results.web3
+      web3 = results.web3;
+// @dev building the api call
+      let oracleContract = web3.eth.contract(abi).at(address);
+      // oracleContract.data();
+
       this.setState({
-        web3: results.web3
+        web3: results.web3,
+        data: "then"
       })
     })
     .catch(error => {
-      // console.log(error)
+      console.log(error)
       this.setState({
-        web3error: error.error
+        web3error: error.error,
+        data: "catch"
       })
     })
     // this.accountListener()
@@ -235,10 +238,10 @@ accountListener = () => {
 
     let data = []
 
-    _.each(this.state.firstNames, (value, index) => {
+    _.each(this.state.data, (value, index) => {
       data.push(
         <div className="ticker__item" key={index}>
-          {web3.toAscii(this.state.firstNames[index])} {web3.toAscii(this.state.lastNames[index])}: {this.state.ages[index]}
+          {this.state.data}
         </div>
       )
     })
