@@ -153,7 +153,7 @@ class Ticker extends Component {
       oracleContract.data((error, result) => {
         if(!error){
             console.log(JSON.stringify(result));
-            this.setComponentState(JSON.stringify(result))
+            this.setComponentState(web3.toDecimal(result).toString())
 
         }else{
             console.error(error);
