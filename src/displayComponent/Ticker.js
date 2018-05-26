@@ -5,7 +5,7 @@ import getWeb3 from '../utils/getWeb3'
 import '../css/oswald.css'
 import '../css/open-sans.css'
 import '../css/pure-min.css'
-import './Ticker.scss'
+import './Ticker.css'
 
 class Ticker extends Component {
   constructor(props) {
@@ -72,7 +72,11 @@ class Ticker extends Component {
       <div className="displayComponent">
         <div className="ticker-wrap">
           <div className="ticker">
-            <div className="ticker__item">the data returned is:</div>
+            <div className="ticker__item">BTC: $10,000</div>
+            <div className="ticker__item">ETH: $1,000</div>
+            <div className="ticker__item">TRTL: $0.10</div>
+            <div className="ticker__item">Pluracle: Awesome!</div>
+            <div className="ticker__item">More Data: More Data</div>
           </div>
         </div>
       </div>
