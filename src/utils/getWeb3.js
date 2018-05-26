@@ -21,11 +21,11 @@ let getWeb3 = new Promise(function(resolve, reject) {
       // use the development console's port by default.
         // testrpc or ganache use "http://localhost:8545"
         // truffle develop uses "http://localhost:9545"
-      // var provider = new Web3.providers.HttpProvider('http://localhost:9545')
-      // web3 = new Web3(provider)
-      // results = {
-        // web3: web3
-      // }
+      var provider = new Web3.providers.HttpProvider('http://localhost:9545')
+      web3 = new Web3(provider)
+      results = {
+        web3: web3
+      }
       console.log('No web3 instance injected.');
       // resolve(results)
       error = {
