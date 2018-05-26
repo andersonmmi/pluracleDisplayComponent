@@ -149,7 +149,12 @@ class Ticker extends Component {
       web3 = results.web3;
 // @dev building the api call
       let oracleContract = web3.eth.contract(abi).at(address);
-      // oracleContract.data();
+      oracleContract.data(function(error, result){
+        if(!error)
+            console.log(JSON.stringify(result));
+        else
+            console.error(error);
+      });
 
       this.setState({
         web3: results.web3,
