@@ -135,7 +135,7 @@ class Ticker extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: null,
+      data: [],
       web3: null,
     }
     this.setComponentState=this.setComponentState.bind(this);
@@ -153,7 +153,7 @@ class Ticker extends Component {
       oracleContract.data((error, result) => {
         if(!error){
             console.log(JSON.stringify(result));
-            this.setComponentState(web3.toDecimal(result).toString())
+            this.setComponentState([web3.toDecimal(result).toString()])
 
         }else{
             console.error(error);
@@ -256,7 +256,7 @@ setComponentState = (data) => {
     _.each(this.state.data, (value, index) => {
       data.push(
         <div className="ticker__item" key={index}>
-          {this.state.data}
+          {this.state.data[index]}
         </div>
       )
     })
