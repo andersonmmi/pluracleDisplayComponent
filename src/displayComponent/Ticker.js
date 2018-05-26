@@ -138,6 +138,7 @@ class Ticker extends Component {
       data: null,
       web3: null,
     }
+    this.setComponentState=this.setComponentState.bind(this);
   }
 
   componentWillMount() {
@@ -149,12 +150,11 @@ class Ticker extends Component {
       web3 = results.web3;
 // @dev building the api call
       let oracleContract = web3.eth.contract(abi).at(address);
-      oracleContract.data(function(error, result){
+      oracleContract.data((error, result) => {
         if(!error){
             console.log(JSON.stringify(result));
-            this.setState({
-              data: JSON.stringify(result)
-            })
+            this.setComponentState(JSON.stringify(result))
+
         }else{
             console.error(error);
         }
@@ -240,6 +240,12 @@ accountListener = () => {
     //   30000
     // )
   }
+
+setComponentState = (data) => {
+  this.setState({
+    data: data
+  })
+}
 
 
 
