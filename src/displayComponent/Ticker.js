@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 //import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
-import getWeb3 from '../utils/getWeb3'
+// import getWeb3 from '../utils/getWeb3'
 import Web3 from 'web3';
 import _ from 'lodash';
 
@@ -91,7 +91,6 @@ let peopleContractABI = [
 let peopleContractAddress = '0xf25186b5081ff5ce73482ad761db0eb0d25abfbf';
 let peopleContract = web3.eth.contract(peopleContractABI).at(peopleContractAddress);
 web3.eth.defaultAccount = web3.eth.accounts[0];
-let balance = web3.fromWei(web3.eth.getBalance(web3.eth.coinbase)).toString();
 
 class Ticker extends Component {
   constructor(props) {
@@ -113,19 +112,21 @@ class Ticker extends Component {
     });
     console.log(typeof data);
     console.log(data);
+  }
 
-    getWeb3
-    .then(results => {
-      this.setState({
-        web3: results.web3
-      })
-
-      // Instantiate contract once web3 provided.
-      // this.instantiateContract()
-    })
-    .catch(() => {
-      console.log('Error finding web3.')
-    })
+  componentDidMount() {
+    setInterval(()=>{
+        var data = peopleContract.getPeople();
+        this.setState({
+          firstNames: String(data[0]).split(','),
+          lastNames: String(data[1]).split(','),
+          ages: String(data[2]).split(',')
+        });
+        console.log(typeof data);
+        console.log(data);
+      },
+      30000
+    )
   }
 
 
