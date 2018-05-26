@@ -5,7 +5,7 @@ import getWeb3 from '../utils/getWeb3'
 import '../css/oswald.css'
 import '../css/open-sans.css'
 import '../css/pure-min.css'
-import './Ticker.css'
+import './Ticker.scss'
 
 class Ticker extends Component {
   constructor(props) {
