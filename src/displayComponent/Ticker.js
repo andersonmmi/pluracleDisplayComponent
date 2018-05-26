@@ -110,8 +110,7 @@ class Ticker extends Component {
       lastNames: String(data[1]).split(','),
       ages: String(data[2]).split(',')
     });
-    console.log(typeof data);
-    console.log(data);
+    console.log(Date.now());
   }
 
   componentDidMount() {
@@ -122,8 +121,7 @@ class Ticker extends Component {
           lastNames: String(data[1]).split(','),
           ages: String(data[2]).split(',')
         });
-        console.log(typeof data);
-        console.log(data);
+        console.log(Date.now());
       },
       30000
     )
