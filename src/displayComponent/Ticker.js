@@ -416,15 +416,15 @@ class Ticker extends Component {
         data: "catch"
       })
     })
-    // this.accountListener()
-    // var data = peopleContract.getPeople();
-    // this.setState({
-    //   firstNames: String(data[0]).split(','),
-    //   lastNames: String(data[1]).split(','),
-    //   ages: String(data[2]).split(',')
-    // });
-    // console.log(Date.now());
-    console.log(this.state.web3);
+    // // this.accountListener()
+    // // var data = peopleContract.getPeople();
+    // // this.setState({
+    // //   firstNames: String(data[0]).split(','),
+    // //   lastNames: String(data[1]).split(','),
+    // //   ages: String(data[2]).split(',')
+    // // });
+    // // console.log(Date.now());
+    // console.log(this.state.web3);
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -506,28 +506,28 @@ setOracleList = (data) => {
 }
 
 setData = (data) => {
-    let resultArray = Object.values(data);
-    let a = [];
-    let b = [];
-    let c = [];
-    let d = [];
-    let e = [];
-
-    resultArray.map((f)=>console.log(f))
-    // a.push(resultArray[0][0]);
-    // console.log(typeof(data[0][0]));
-    // b.push(resultArray[0][1]);
-    // c.push(resultArray[0][2]);
-    // d.push(resultArray[0][3]);
-    // e.push(resultArray[0][4]);
-
-    this.setState({
-      owner: a,
-      oracleType: b,
-      description: c,
-      data: d,
-      lastUpdated: e,
-    });
+    // let resultArray = Object.values(data);
+    // let a = [];
+    // let b = [];
+    // let c = [];
+    // let d = [];
+    // let e = [];
+    //
+    // resultArray.map((f)=>console.log(f))
+    // // a.push(resultArray[0][0]);
+    // // console.log(typeof(data[0][0]));
+    // // b.push(resultArray[0][1]);
+    // // c.push(resultArray[0][2]);
+    // // d.push(resultArray[0][3]);
+    // // e.push(resultArray[0][4]);
+    //
+    // this.setState({
+    //   owner: a,
+    //   oracleType: b,
+    //   description: c,
+    //   data: d,
+    //   lastUpdated: e,
+    // });
 }
 
 

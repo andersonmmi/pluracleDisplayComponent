@@ -359,19 +359,38 @@ componentWillMount() {
               array.push(value);
           })
           this.setOracleList(array);
-
+          this.setState({
+              owner: [],
+              oracleType: [],
+              description: [],
+              data: [],
+              lastUpdated: []
+          })
           _.each(this.state.oracleList, (value, index)=>{
               oracleContract.getOracleInfo(this.state.oracleList[index],(error, result) => {
                   if(!error){
-                      console.log(JSON.stringify(result));
-                      this.setData(result);
+                      let owner = result[0];
+                      let oracleType = result[1]
+                      let description = result[2];
+                      let data = result[3];
+                      let lastUpdated = results[4];
+                      console.log("lastUpdated " + lastUpdated)
+                      this.setState({
+                          owner: _.concat(this.state.owner, owner),
+                          oracleType: _.concat(this.state.oracleType, oracleType),
+                          description: _.concat(this.state.description, description),
+                          data: _.concat(this.state.data, data.toNumber()),
+                          lastUpdated: _.concat(this.state.lastUpdated, lastUpdated ? lastUpdated.toNumber() : 0)
+                      })
                   }else{
                       console.error(error);
                   }
               });
 
-          })
-
+          });
+          console.log(typeof(infoArray));
+          this.setState({infoArray: infoArray})
+          this.setData(this.state.infoArray);
 
       }else{
           console.error(error);
@@ -396,7 +415,7 @@ componentWillMount() {
   //   ages: String(data[2]).split(',')
   // });
   // console.log(Date.now());
-  console.log(this.state.web3);
+  // console.log(this.state.web3);
 }
 
 // componentDidMount() {
@@ -436,13 +455,13 @@ setOracleList = (data) => {
 
 setData = (data) => {
     // owner, oracleType, description, data, lastUpdated
-    this.setState({
-      owner: String(data[0]).split(','),
-      oracleType: String(data[1]).split(','),
-      description: String(data[2]).split(','),
-      data: String(data[3]).split(','),
-      lastUpdated: String(data[4]).split(','),
-    });
+    // this.setState({
+    //   owner: String(data[0]).split(','),
+    //   oracleType: String(data[1]).split(','),
+    //   description: String(data[2]).split(','),
+    //   data: String(data[3]).split(','),
+    //   lastUpdated: String(data[4]).split(','),
+    // });
 }
 
     render() {
