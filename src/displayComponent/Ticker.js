@@ -96,7 +96,7 @@ class Ticker extends Component {
       oracleContract.data((error, result) => {
         if(!error){
             console.log(JSON.stringify(result));
-            array.push(web3.toDecimal(result).toString());
+            array.push("account 1: "+web3.toDecimal(result).toString());
             this.setComponentState(array);
         }else{
             console.error(error);
@@ -106,7 +106,7 @@ class Ticker extends Component {
       oracleContract.data((error, result) => {
         if(!error){
             console.log(JSON.stringify(result));
-            array.push(web3.toDecimal(result).toString());
+            array.push("account 2: "+web3.toDecimal(result).toString());
             this.setComponentState(array);
         }else{
             console.error(error);
@@ -115,7 +115,7 @@ class Ticker extends Component {
       oracleContract.data((error, result) => {
         if(!error){
             console.log(JSON.stringify(result));
-            array.push(web3.toDecimal(result).toString());
+            array.push("account 3: "+web3.toDecimal(result).toString());
             this.setComponentState(array);
         }else{
             console.error(error);
@@ -197,7 +197,7 @@ accountListener = () => {
       oracleContract.data((error, result) => {
         if(!error){
             console.log(JSON.stringify(result));
-            array.push(web3.toDecimal(result).toString());
+            array.push("account 1: "+web3.toDecimal(result).toString());
             this.setComponentState(array);
         }else{
             console.error(error);
@@ -207,7 +207,7 @@ accountListener = () => {
       oracleContract.data((error, result) => {
         if(!error){
             console.log(JSON.stringify(result));
-            array.push(web3.toDecimal(result).toString());
+            array.push("account 2: "+web3.toDecimal(result).toString());
             this.setComponentState(array);
         }else{
             console.error(error);
@@ -216,7 +216,7 @@ accountListener = () => {
       oracleContract.data((error, result) => {
         if(!error){
             console.log(JSON.stringify(result));
-            array.push(web3.toDecimal(result).toString());
+            array.push("account 3: "+web3.toDecimal(result).toString());
             this.setComponentState(array);
         }else{
             console.error(error);

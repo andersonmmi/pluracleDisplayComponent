@@ -53,8 +53,8 @@
   animation-timing-function: linear;
   -webkit-animation-name: ticker;
   animation-name: ticker;
-  -webkit-animation-duration: 3s;
-  animation-duration: 3s;
+  -webkit-animation-duration: 9s;
+  animation-duration: 9s;
 }
 .ticker-wrap .ticker__item {
   display: inline-block;
