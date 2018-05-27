@@ -334,8 +334,13 @@ let address = '0x19400099be04c9c720d742784bd5f5e841bce78a';
 class Ticker extends Component {
   constructor(props) {
     super(props)
+    // owner, oracleType, description, data, lastUpdated
     this.state = {
-      data: [],
+        owner: [],
+        oracleType: [],
+        description: [],
+        data: [],
+        lastUpdated: [],
       oracleList: [],
       web3: null,
     }
@@ -363,7 +368,7 @@ class Ticker extends Component {
             oracleContract.getOracleInfo(this.state.oracleList[0],(error, result) => {
                 if(!error){
                     console.log(JSON.stringify(result));
-                    
+                    this.setData(result);
                 }else{
                     console.error(error);
                 }
@@ -469,9 +474,14 @@ setOracleList = (data) => {
 }
 
 setData = (data) => {
+    // owner, oracleType, description, data, lastUpdated
     this.setState({
-        data: data
-    })
+      owner: String(data[0]).split(','),
+      oracleType: String(data[1]).split(','),
+      description: String(data[2]).split(','),
+      data: String(data[3]).split(','),
+      lastUpdated: String(data[4]).split(','),
+    });
 }
 
 
@@ -479,11 +489,15 @@ setData = (data) => {
   render() {
 
     let data = []
-
+    // owner, oracleType, description, data, lastUpdated
     _.each(this.state.data, (value, index) => {
       data.push(
         <div className="ticker__item" key={index}>
-          {this.state.data[index]}
+          {this.state.owner[index]}+
+          {this.state.oracleType[index]}+
+          {this.state.description[index]}+
+          {this.state.data[index]}+
+          {this.state.lastUpdated}
         </div>
       )
     })
