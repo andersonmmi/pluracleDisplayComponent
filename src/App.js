@@ -49,9 +49,9 @@ class App extends Component {
   if(prevState.web3!==this.state.web3) {
     this.whichNetwork();
   }
-  if(prevState.networkId!==this.state.networkId) {
-    this.reportNetwork(this.state.networkId);
-  }
+  // if(prevState.networkId!==this.state.networkId) {
+  //   this.reportNetwork(this.state.networkId);
+  // }
   if(this.state.web3!==null) {
     this.accountListener()
   }
@@ -64,14 +64,14 @@ whichNetwork = () => {
   })
 }
 
-reportNetwork = (netId) => {
-  if(netId!=="3"){
-    this.setState({netIdError: "You must be on the Ropsten network!"})
-  }
-  if(netId==="3"){
-    this.setState({netIdError: null})
-  }
-}
+// reportNetwork = (netId) => {
+//   if(netId!=="3"){
+//     this.setState({netIdError: "You must be on the Ropsten network!"})
+//   }
+//   if(netId==="3"){
+//     this.setState({netIdError: null})
+//   }
+// }
 
 accountListener = () => {
   // var account = web3.eth.accounts[0];
