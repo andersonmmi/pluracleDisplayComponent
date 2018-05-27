@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import getWeb3 from './utils/getWeb3'
 
 import Ticker from './displayComponent/Ticker.js'
+import SourceSelector from './SourceSelector/SourceSelector.js'
 
 import './css/oswald.css'
 import './css/open-sans.css'
@@ -101,8 +102,11 @@ accountListener = () => {
               <p>If your contracts compiled and migrated successfully, below will show a stored value of 5 (by default).</p>
               <p>Try changing the value stored on <strong>line 59</strong> of App.js.</p>
               <p>The stored value is: {this.state.storageValue}</p>
+              <SourceSelector />
+
             </div>
           </div>
+
         </main>
 
         <Ticker />

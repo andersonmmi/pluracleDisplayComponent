@@ -1,57 +1,60 @@
 import React, { Component } from 'react';
-
+import './SourceSelector.css'
 
 class SourceSelector extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      sources: null
-    }
-    this.handleTextChange=this.handleTextChange.bind(this);
-    this.handleSubmit=this.handleSubmit.bind(this);
-  }
-
-  handleTextChange = (event) => {
-    event.preventDefault();
-    if (this.state[event.target.id] !== undefined){
-      this.setState({[event.target.id]: event.target.value});
-    }
-  }
-  handleSubmit = (event) => {
-    this.setState({
-      sources: null
-    });
-    // this.props.updateTransactionTime();
-  }
-
-  render() {
-    const formStyle = {
-      "backgroundColor": "deepskyblue",
-      "flexGrow": 1,
-    };
-    return (
-      <div className="SourceSelector" style={formStyle}>
-        <form>
-          <label>
-            First Name:
-            <input id="firstName" onChange={this.handleTextChange} type="text" value={this.state.firstName}/>
-          </label>
-          <hr/>
-          <label>
-            Last Name:
-            <input id="lastName" onChange={this.handleTextChange} type="text" value={this.state.lastName}/>
-          </label>
-          <hr />
-          <label>
-            Age:
-            <input id="age" onChange={this.handleTextChange} type="text" value={this.state.age}/>
-          </label>
-          <hr />
-          <input id="submit" type="button" value="Submit" onClick={this.handleSubmit}/>
-        </form>
-      </div>
-    );
-  }
+  constructor(props) {
+  super(props);
+  this.state = { isChecked: false };
 }
+
+
+
+    render() {
+      return (
+        <div>
+          <Checkbox
+            id="checkbox3"
+            value="random3"
+            name="example"
+            label={
+              <span>some unchecked component with event handled by react</span>
+            }
+            isChecked={this.state.isChecked}
+            onChange={() => this._handleClick()}/>
+          <button onClick={() => this._handleClick()}>click</button>
+        </div>
+      );
+    }
+
+    _handleClick() {
+      this.setState({ isChecked: !this.state.isChecked });
+    }
+  }
+
+  class Checkbox extends React.Component {
+    render() {
+      return (
+        <div>
+          <input
+            type="checkbox"
+            id={this.props.id}
+            value={this.props.value}
+            name={this.props.name}
+            checked={this.props.isChecked}
+            disabled={this.props.disabled}
+            onChange={ () => this.props.onChange() }/>
+          <label
+            aria-hidden="true"
+            htmlFor={this.props.id}/>
+          <label htmlFor={this.props.id}>
+            {this.props.label}
+          </label>
+        </div>
+      );
+    }
+  }
+
+
+
 
 export default SourceSelector;
