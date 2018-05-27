@@ -328,12 +328,8 @@ class SourceSelector extends Component {
   constructor(props) {
   super(props);
   this.state = {
-    account1: false,
-    account2: false,
-    account3: false,
+    oracleList: [],
   };
-  this.handleClick=this.handleClick.bind(this);
-  this.setOracleList=this.setOracleList.bind(this);
 }
 
 componentWillMount() {
@@ -344,7 +340,6 @@ componentWillMount() {
     // console.log('results: ', results);
     web3 = results.web3;
     let array = []
-    let infoArray = []
 // @dev building the api call
     let oracleContract = web3.eth.contract(abi).at(address);
     console.log(oracleContract);
@@ -398,28 +393,28 @@ setOracleList = (data) => {
 
     render() {
 
-        let data = []
+        let TableRows = []
 
         _.each(this.state.oracleList, (value, index) => {
-          data.push(
-             <span className="oracleCheckbox" key={index}>
-             <input
-                type="checkbox"
-                id="account1"
-                name="account1"
-                checked={this.state.account1}
-                onChange={this.handleClick.bind(this)}/>
-                account1
-            </span>
-
+          TableRows.push(
+            <tr key={index}>
+              <td>{this.state.oracleList[index]}</td>
+            </tr>
           )
         })
 
       return (
         <div className="listOfOracles">
-            {data}
-
-          <button>filter</button>
+            <table className="App-table">
+                <thead>
+                <tr>
+                  <th>Oracle Address</th>
+                </tr>
+                </thead>
+                <tbody>
+                {TableRows}
+                </tbody>
+            </table>
         </div>
       );
     }
