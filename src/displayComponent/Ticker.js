@@ -368,20 +368,36 @@ class Ticker extends Component {
                 array.push(value);
             })
             this.setOracleList(array);
-
+            this.setState({
+                owner: [],
+                oracleType: [],
+                description: [],
+                data: [],
+                lastUpdated: []
+            })
             _.each(this.state.oracleList, (value, index)=>{
                 oracleContract.getOracleInfo(this.state.oracleList[index],(error, result) => {
                     if(!error){
-                        console.log(JSON.stringify(result));
-                        infoArray.push(result);
-
+                        let owner = result[0];
+                        let oracleType = result[1]
+                        let description = result[2];
+                        let data = result[3];
+                        let lastUpdated = results[4];
+                        console.log("lastUpdated " + lastUpdated)
+                        this.setState({
+                            owner: _.concat(this.state.owner, owner),
+                            oracleType: _.concat(this.state.oracleType, oracleType),
+                            description: _.concat(this.state.description, description),
+                            data: _.concat(this.state.data, data.toNumber()),
+                            lastUpdated: _.concat(this.state.lastUpdated, lastUpdated ? lastUpdated.toNumber() : 0)
+                        })
                     }else{
                         console.error(error);
                     }
                 });
 
             });
-            console.log(infoArray);
+            console.log(typeof(infoArray));
             this.setState({infoArray: infoArray})
             this.setData(this.state.infoArray);
 
@@ -490,21 +506,20 @@ setOracleList = (data) => {
 }
 
 setData = (data) => {
-    console.log("THIS IS DATA: "+ JSON.stringify(data));
-    console.log(data[0]);
-    console.log(data[0][0]);
+    let resultArray = Object.values(data);
     let a = [];
     let b = [];
     let c = [];
     let d = [];
     let e = [];
 
-    a.push(data[0][0]);
-    console.log(typeof(data[0][0]));
-    b.push(data[0][1]);
-    c.push(data[0][2]);
-    d.push(data[0][3]);
-    e.push(data[0][4]);
+    resultArray.map((f)=>console.log(f))
+    // a.push(resultArray[0][0]);
+    // console.log(typeof(data[0][0]));
+    // b.push(resultArray[0][1]);
+    // c.push(resultArray[0][2]);
+    // d.push(resultArray[0][3]);
+    // e.push(resultArray[0][4]);
 
     this.setState({
       owner: a,
