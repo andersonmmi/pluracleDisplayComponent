@@ -9,49 +9,54 @@ class SourceSelector extends Component {
     account2: false,
     account3: false,
   };
-  this._handleClick=this._handleClick.bind(this);
+  this.handleClick=this.handleClick.bind(this);
 }
 
-    _handleClick = (event) => {
-      event.preventDefault();
-      console.log(event);
-      // this.setState({ [event.target.id]: !this.state.[event.target.id] });
-    }
+  handleClick = (event) => {
+    console.log(event);
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
 
     render() {
       return (
-        <div>
+        <div className="listOfOracles">
+          <span>
           <input
             type="checkbox"
             id="account1"
             name="account1"
             checked={this.state.account1}
-            onChange={() => this._handleClick()}/>
-            <span>account1</span>
+            onChange={this.handleClick.bind(this)}/>
+            account1</span>
+          <span>
           <input
             type="checkbox"
             id="account2"
             name="account2"
             checked={this.state.account2}
-            onChange={() => this._handleClick()}/>
-            <span>account2</span>
+            onChange={this.handleClick.bind(this)}/>
+            account2</span>
+          <span>
           <input
             type="checkbox"
             id="account3"
             name="account3"
             checked={this.state.account3}
-            onChange={() => this._handleClick()}/>
-            <span>account3</span>
+            onChange={this.handleClick.bind(this)}/>
+            account3</span>
 
-          <button onClick={() => this._handleClick()}>filter</button>
+          <button>filter</button>
         </div>
       );
     }
 
-    _handleClick = (event) => {
-      console.log(event);
-      // this.setState({ [event.target.id]: !this.state.[event.target.id] });
-    }
+
   }
 
 
