@@ -357,7 +357,6 @@ class Ticker extends Component {
       // console.log('results: ', results);
       web3 = results.web3;
       let array = []
-      let infoArray = []
 // @dev building the api call
       let oracleContract = web3.eth.contract(abi).at(address);
       // console.log(oracleContract);
@@ -397,9 +396,6 @@ class Ticker extends Component {
                 });
 
             });
-            // console.log(typeof(infoArray));
-            this.setState({infoArray: infoArray})
-            this.setData(this.state.infoArray);
 
         }else{
             console.error(error);
