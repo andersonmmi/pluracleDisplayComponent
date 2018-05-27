@@ -493,11 +493,11 @@ setData = (data) => {
     _.each(this.state.data, (value, index) => {
       data.push(
         <div className="ticker__item" key={index}>
-          {this.state.owner[index]}+
-          {this.state.oracleType[index]}+
-          {this.state.description[index]}+
-          {this.state.data[index]}+
-          {this.state.lastUpdated}
+          {/*{this.state.owner[index]}+
+          {this.state.oracleType[index]}+*/}
+          {this.state.description[index]}:{' '}
+          {this.state.data[index]}
+          {/*{this.state.lastUpdated[index]}*/}
         </div>
       )
     })
