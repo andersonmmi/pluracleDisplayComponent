@@ -90,12 +90,17 @@ class Ticker extends Component {
     .then(results => {
       // console.log('results: ', results);
       web3 = results.web3;
+      let array = []
 // @dev building the api call
       let oracleContract = web3.eth.contract(abi).at(address);
       oracleContract.data((error, result) => {
         if(!error){
             console.log(JSON.stringify(result));
-            this.setComponentState([web3.toDecimal(result).toString()])
+            array.push(web3.toDecimal(result).toString());
+            array.push(web3.toDecimal(result).toString());
+            array.push(web3.toDecimal(result).toString());
+
+            this.setComponentState(array);
 
         }else{
             console.error(error);
