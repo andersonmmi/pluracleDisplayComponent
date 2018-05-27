@@ -382,8 +382,8 @@ class Ticker extends Component {
                         let oracleType = result[1]
                         let description = result[2];
                         let data = result[3];
-                        let lastUpdated = results[4];
-                        console.log("lastUpdated " + lastUpdated)
+                        let lastUpdated = result[4];
+                        // console.log("lastUpdated " + lastUpdated)
                         this.setState({
                             owner: _.concat(this.state.owner, owner),
                             oracleType: _.concat(this.state.oracleType, oracleType),
