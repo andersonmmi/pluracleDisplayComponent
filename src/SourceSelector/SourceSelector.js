@@ -478,6 +478,7 @@ setData = (data) => {
             <tr key={index}>
               <td>{this.state.oracleList[index]}</td>
               <td>{this.state.description[index]}</td>
+              <td>{this.state.owner[index]}</td>
               <td>{this.state.oracleType[index]}</td>
               <td>{this.state.lastUpdated[index]}</td>
             </tr>
@@ -491,6 +492,7 @@ setData = (data) => {
                 <tr>
                   <th>Contract Address</th>
                   <th>Description</th>
+                  <th>Owner</th>
                   <th>Type</th>
                   <th>Updated</th>
                 </tr>
