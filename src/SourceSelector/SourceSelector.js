@@ -4,6 +4,8 @@ import Web3 from 'web3';
 import _ from 'lodash';
 import './SourceSelector.css'
 
+
+
 let web3
 
 let abi = [
@@ -434,7 +436,7 @@ setData = (data) => {
           TableRows.push(
             <tr key={index}>
               <td>{this.state.description[index]}</td>
-              <td>{this.state.oracleList[index]}</td>
+
               <td>{this.state.oracleType[index]}</td>
               <td>{this.state.lastUpdated[index]}</td>
             </tr>
@@ -447,7 +449,7 @@ setData = (data) => {
                 <thead>
                 <tr>
                   <th>Contract Name</th>
-                  <th>Oracle Address</th>
+
                   <th>Type</th>
                   <th>Updated</th>
                 </tr>
