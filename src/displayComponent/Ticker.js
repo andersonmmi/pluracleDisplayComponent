@@ -377,12 +377,8 @@ class Ticker extends Component {
             console.error(error);
         }
       });
-
-      // @dev repeat 2x
-
       this.setState({
         web3: results.web3,
-
       })
     })
     .catch(error => {
@@ -447,24 +443,32 @@ accountListener = () => {
 
 
   componentDidMount() {
-    // setInterval(()=>{
-    //   web3 = this.state.web3;
-    //   let array = []
-    //   let oracleContract = web3.eth.contract(abi).at(address);
-    //   oracleContract.data((error, result) => {
-    //     if(!error){
-    //         console.log(JSON.stringify(result));
-    //         array.push("account 1: "+web3.toDecimal(result).toString());
-    //         this.setComponentState(array);
-    //     }else{
-    //         console.error(error);
-    //     }
-    //   });
-// @dev repeat 2x
-
-    //   },
-    //   3000
-    // )
+    setInterval(()=>{
+        web3 = this.state.web3;
+        let array = []
+        let infoArray = []
+        let oracleContract = web3.eth.contract(abi).at(address);
+        console.log(oracleContract);
+        oracleContract.getOracleList("signed:uint256", (error, result) => {
+          if(!error){
+              console.log(JSON.stringify(result));
+              array.push(result);
+              this.setOracleList(array);
+              oracleContract.getOracleInfo(this.state.oracleList[0],(error, result) => {
+                  if(!error){
+                      console.log(JSON.stringify(result));
+                      this.setData(result);
+                  }else{
+                      console.error(error);
+                  }
+              });
+          }else{
+              console.error(error);
+          }
+      });
+    },
+      3000
+    )
   }
 
 setOracleList = (data) => {
