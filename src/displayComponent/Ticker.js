@@ -12,118 +12,60 @@ import './Ticker.css'
 let web3
 
 let abi = [
- {
-  "anonymous": false,
-  "inputs": [
-   {
-    "indexed": true,
-    "name": "previousOwner",
-    "type": "address"
-   },
-   {
-    "indexed": true,
-    "name": "newOwner",
-    "type": "address"
-   }
-  ],
-  "name": "OwnershipTransferred",
-  "type": "event"
- },
- {
-  "constant": false,
-  "inputs": [
-   {
-    "name": "newOwner",
-    "type": "address"
-   }
-  ],
-  "name": "transferOwnership",
-  "outputs": [],
-  "payable": false,
-  "stateMutability": "nonpayable",
-  "type": "function"
- },
- {
-  "constant": false,
-  "inputs": [
-   {
-    "name": "data",
-    "type": "bytes32"
-   }
-  ],
-  "name": "update",
-  "outputs": [],
-  "payable": false,
-  "stateMutability": "nonpayable",
-  "type": "function"
- },
- {
-  "inputs": [
-   {
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "newData",
+        "type": "bytes32"
+      }
+    ],
+    "name": "Updated",
+    "type": "event"
+  },
+  {
+    "constant": true,
+    "inputs": [],
     "name": "dataType",
-    "type": "string"
-   }
-  ],
-  "payable": false,
-  "stateMutability": "nonpayable",
-  "type": "constructor"
- },
- {
-  "constant": true,
-  "inputs": [],
-  "name": "data",
-  "outputs": [
-   {
-    "name": "",
-    "type": "bytes32"
-   }
-  ],
-  "payable": false,
-  "stateMutability": "view",
-  "type": "function"
- },
- {
-  "constant": true,
-  "inputs": [],
-  "name": "dataType",
-  "outputs": [
-   {
-    "name": "",
-    "type": "string"
-   }
-  ],
-  "payable": false,
-  "stateMutability": "view",
-  "type": "function"
- },
- {
-  "constant": true,
-  "inputs": [],
-  "name": "lastTimestamp",
-  "outputs": [
-   {
-    "name": "",
-    "type": "uint256"
-   }
-  ],
-  "payable": false,
-  "stateMutability": "view",
-  "type": "function"
- },
- {
-  "constant": true,
-  "inputs": [],
-  "name": "owner",
-  "outputs": [
-   {
-    "name": "",
-    "type": "address"
-   }
-  ],
-  "payable": false,
-  "stateMutability": "view",
-  "type": "function"
- }
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "lastTimestamp",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "data",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }
 ];
 let address = '0xd64f463affca20ea99059ba42ed13c979587a117';
 // let oracleContract = web3.eth.contract(abi).at(address);
