@@ -343,6 +343,7 @@ class Ticker extends Component {
         lastUpdated: [],
       oracleList: [],
       web3: null,
+      infoArray: [],
     }
     this.setOracleList=this.setOracleList.bind(this);
     this.setData=this.setData.bind(this);
@@ -372,14 +373,17 @@ class Ticker extends Component {
                 oracleContract.getOracleInfo(this.state.oracleList[index],(error, result) => {
                     if(!error){
                         console.log(JSON.stringify(result));
-                        this.setData(result);
+                        infoArray.push(result);
+
                     }else{
                         console.error(error);
                     }
                 });
 
-            })
-
+            });
+            console.log(infoArray);
+            this.setState({infoArray: infoArray})
+            this.setData(this.state.infoArray);
 
         }else{
             console.error(error);
@@ -486,13 +490,25 @@ setOracleList = (data) => {
 }
 
 setData = (data) => {
-    // owner, oracleType, description, data, lastUpdated
+    console.log("THIS IS DATA: "+ JSON.stringify(data));
+    let a = [];
+    let b = [];
+    let c = [];
+    let d = [];
+    let e = [];
+
+    a.push(data[0][0]);
+    b.push(data[0][0]);
+    c.push(data[0][0]);
+    d.push(data[0][0]);
+    e.push(data[0][0]);
+
     this.setState({
-      owner: String(data[0]).split(','),
-      oracleType: String(data[1]).split(','),
-      description: String(data[2]).split(','),
-      data: String(data[3]).split(','),
-      lastUpdated: String(data[4]).split(','),
+      owner: a,
+      oracleType: b,
+      description: c,
+      data: d,
+      lastUpdated: e,
     });
 }
 
