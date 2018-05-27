@@ -363,15 +363,43 @@ componentWillMount() {
       data: "catch"
     })
   })
-  // this.accountListener()
-  // var data = peopleContract.getPeople();
-  // this.setState({
-  //   firstNames: String(data[0]).split(','),
-  //   lastNames: String(data[1]).split(','),
-  //   ages: String(data[2]).split(',')
-  // });
-  // console.log(Date.now());
-  console.log(this.state.web3);
+}
+
+componentDidMount() {
+    setInterval(()=>{
+      /** Get network provider and web3 instance.
+       See utils/getWeb3 for more info. */
+      getWeb3
+      .then(results => {
+        // console.log('results: ', results);
+        web3 = results.web3;
+        let array = []
+    // @dev building the api call
+        let oracleContract = web3.eth.contract(abi).at(address);
+        // console.log(oracleContract);
+        oracleContract.getOracleList("signed:uint256", (error, result) => {
+          if(!error){
+              console.log("!!UPDATED TABLE!!");
+              array.push(result);
+              this.setOracleList(array);
+          }else{
+              console.error(error);
+          }
+        });
+        this.setState({
+          web3: results.web3,
+        })
+      })
+      .catch(error => {
+        console.log(error)
+        this.setState({
+          web3error: error.error,
+          data: "catch"
+        })
+      })
+    },
+        2000
+    )
 }
 
 setOracleList = (data) => {

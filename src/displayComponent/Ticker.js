@@ -431,9 +431,9 @@ accountListener = () => {
   // var account = web3.eth.accounts[0];
   setInterval(() => {
     if (this.state.web3.eth.accounts[0] !== this.state.account) {
-      console.log('this.state.web3.eth.accounts[0]: ', this.state.web3.eth.accounts[0]);
-      console.log('this.state.account: ', this.state.account)
-      console.log('this.state.web3:', this.state.web3);
+      // console.log('this.state.web3.eth.accounts[0]: ', this.state.web3.eth.accounts[0]);
+      // console.log('this.state.account: ', this.state.account)
+      // console.log('this.state.web3:', this.state.web3);
       // account = web3.eth.accounts[0];
       // updateInterface();
       this.setState({account: this.state.web3.eth.accounts[0]})
@@ -448,10 +448,10 @@ accountListener = () => {
         let array = []
         let infoArray = []
         let oracleContract = web3.eth.contract(abi).at(address);
-        console.log(oracleContract);
+        // console.log(oracleContract);
         oracleContract.getOracleList("signed:uint256", (error, result) => {
           if(!error){
-              console.log(JSON.stringify(result));
+              console.log("!!UPDATED TICKER!!");
               array.push(result);
               this.setOracleList(array);
               oracleContract.getOracleInfo(this.state.oracleList[0],(error, result) => {
