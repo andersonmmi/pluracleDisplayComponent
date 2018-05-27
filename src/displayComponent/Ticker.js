@@ -325,7 +325,7 @@ let abi = [
       "type": "function"
     }
   ];
-let address = '0x19400099be04c9c720d742784bd5f5e841bce78a';
+let address = '0x07acc3f37fddcffdfb36a5e4e0e37f0f25a6c181';
 // let oracleContract = web3.eth.contract(abi).at(address);
 // web3.eth.defaultAccount = web3.eth.accounts[0];
 
@@ -359,20 +359,28 @@ class Ticker extends Component {
       let infoArray = []
 // @dev building the api call
       let oracleContract = web3.eth.contract(abi).at(address);
-      console.log(oracleContract);
+      // console.log(oracleContract);
       oracleContract.getOracleList("signed:uint256", (error, result) => {
         if(!error){
             console.log(JSON.stringify(result));
-            array.push(result);
+            _.each(result, (value) => {
+                array.push(value);
+            })
             this.setOracleList(array);
-            oracleContract.getOracleInfo(this.state.oracleList[0],(error, result) => {
-                if(!error){
-                    console.log(JSON.stringify(result));
-                    this.setData(result);
-                }else{
-                    console.error(error);
-                }
-            });
+
+            _.each(this.state.oracleList, (value, index)=>{
+                oracleContract.getOracleInfo(this.state.oracleList[index],(error, result) => {
+                    if(!error){
+                        console.log(JSON.stringify(result));
+                        this.setData(result);
+                    }else{
+                        console.error(error);
+                    }
+                });
+
+            })
+
+
         }else{
             console.error(error);
         }
@@ -442,34 +450,34 @@ accountListener = () => {
 }
 
 
-  componentDidMount() {
-    setInterval(()=>{
-        web3 = this.state.web3;
-        let array = []
-        let infoArray = []
-        let oracleContract = web3.eth.contract(abi).at(address);
-        // console.log(oracleContract);
-        oracleContract.getOracleList("signed:uint256", (error, result) => {
-          if(!error){
-              console.log("!!UPDATED TICKER!!");
-              array.push(result);
-              this.setOracleList(array);
-              oracleContract.getOracleInfo(this.state.oracleList[0],(error, result) => {
-                  if(!error){
-                      console.log(JSON.stringify(result));
-                      this.setData(result);
-                  }else{
-                      console.error(error);
-                  }
-              });
-          }else{
-              console.error(error);
-          }
-      });
-    },
-      3000
-    )
-  }
+  // componentDidMount() {
+  //   setInterval(()=>{
+  //       web3 = this.state.web3;
+  //       let array = []
+  //       let infoArray = []
+  //       let oracleContract = web3.eth.contract(abi).at(address);
+  //       // console.log(oracleContract);
+  //       oracleContract.getOracleList("signed:uint256", (error, result) => {
+  //         if(!error){
+  //             console.log("!!UPDATED TICKER!!");
+  //             array.push(result);
+  //             this.setOracleList(array);
+  //             oracleContract.getOracleInfo(this.state.oracleList[0],(error, result) => {
+  //                 if(!error){
+  //                     console.log(JSON.stringify(result));
+  //                     this.setData(result);
+  //                 }else{
+  //                     console.error(error);
+  //                 }
+  //             });
+  //         }else{
+  //             console.error(error);
+  //         }
+  //     });
+  //   },
+  //     3000
+  //   )
+  // }
 
 setOracleList = (data) => {
   this.setState({

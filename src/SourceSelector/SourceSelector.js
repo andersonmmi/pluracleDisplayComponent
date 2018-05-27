@@ -322,7 +322,7 @@ let abi = [
       "type": "function"
     }
   ];
-let address = '0x19400099be04c9c720d742784bd5f5e841bce78a';
+let address = '0x07acc3f37fddcffdfb36a5e4e0e37f0f25a6c181';
 
 
 
@@ -343,73 +343,90 @@ class SourceSelector extends Component {
 componentWillMount() {
   /** Get network provider and web3 instance.
    See utils/getWeb3 for more info. */
-   getWeb3
-   .then(results => {
-   // console.log('results: ', results);
-   web3 = results.web3;
-   let array = []
-   let infoArray = []
-   // @dev building the api call
-   let oracleContract = web3.eth.contract(abi).at(address);
-   console.log(oracleContract);
-   oracleContract.getOracleList("signed:uint256", (error, result) => {
-   if(!error){
-       console.log(JSON.stringify(result));
-       array.push(result);
-       this.setOracleList(array);
-       oracleContract.getOracleInfo(this.state.oracleList[0],(error, result) => {
-           if(!error){
-               console.log(JSON.stringify(result));
-               this.setData(result);
-           }else{
-               console.error(error);
-           }
-       });
-   }else{
-       console.error(error);
-   }
-   });
-   this.setState({
-   web3: results.web3,
-   })
-   })
-   .catch(error => {
-   console.log(error)
-   this.setState({
-   web3error: error.error,
-   data: "catch"
-   })
-   })
-}
-
-componentDidMount() {
-    setInterval(()=>{
-    web3 = this.state.web3;
+  getWeb3
+  .then(results => {
+    // console.log('results: ', results);
+    web3 = results.web3;
     let array = []
     let infoArray = []
+// @dev building the api call
     let oracleContract = web3.eth.contract(abi).at(address);
     // console.log(oracleContract);
     oracleContract.getOracleList("signed:uint256", (error, result) => {
       if(!error){
-          console.log("!!UPDATED TABLE!!");
-          array.push(result);
+          console.log(JSON.stringify(result));
+          _.each(result, (value) => {
+              array.push(value);
+          })
           this.setOracleList(array);
-          oracleContract.getOracleInfo(this.state.oracleList[0],(error, result) => {
-              if(!error){
-                  console.log(JSON.stringify(result));
-                  this.setData(result);
-              }else{
-                  console.error(error);
-              }
-          });
+
+          _.each(this.state.oracleList, (value, index)=>{
+              oracleContract.getOracleInfo(this.state.oracleList[index],(error, result) => {
+                  if(!error){
+                      console.log(JSON.stringify(result));
+                      this.setData(result);
+                  }else{
+                      console.error(error);
+                  }
+              });
+
+          })
+
+
       }else{
           console.error(error);
       }
-  });
-},
-  3000
-)
+    });
+    this.setState({
+      web3: results.web3,
+    })
+  })
+  .catch(error => {
+    console.log(error)
+    this.setState({
+      web3error: error.error,
+      data: "catch"
+    })
+  })
+  // this.accountListener()
+  // var data = peopleContract.getPeople();
+  // this.setState({
+  //   firstNames: String(data[0]).split(','),
+  //   lastNames: String(data[1]).split(','),
+  //   ages: String(data[2]).split(',')
+  // });
+  // console.log(Date.now());
+  console.log(this.state.web3);
 }
+
+// componentDidMount() {
+//     setInterval(()=>{
+//     web3 = this.state.web3;
+//     let array = []
+//     let infoArray = []
+//     let oracleContract = web3.eth.contract(abi).at(address);
+//     // console.log(oracleContract);
+//     oracleContract.getOracleList("signed:uint256", (error, result) => {
+//       if(!error){
+//           console.log("!!UPDATED TABLE!!");
+//           array.push(result);
+//           this.setOracleList(array);
+//           oracleContract.getOracleInfo(this.state.oracleList[0],(error, result) => {
+//               if(!error){
+//                   console.log(JSON.stringify(result));
+//                   this.setData(result);
+//               }else{
+//                   console.error(error);
+//               }
+//           });
+//       }else{
+//           console.error(error);
+//       }
+//   });
+// },
+//   3000
+// )
+// }
 
 setOracleList = (data) => {
   this.setState({
