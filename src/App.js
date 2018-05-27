@@ -77,8 +77,8 @@ accountListener = () => {
   // var account = web3.eth.accounts[0];
   setInterval(() => {
     if (this.state.web3.eth.accounts[0] !== this.state.account) {
-      console.log('this.state.web3.eth.accounts[0]: ', this.state.web3.eth.accounts[0]);
-      console.log('this.state.account: ', this.state.account)
+      // console.log('this.state.web3.eth.accounts[0]: ', this.state.web3.eth.accounts[0]);
+      // console.log('this.state.account: ', this.state.account)
       // account = web3.eth.accounts[0];
       // updateInterface();
       this.setState({account: this.state.web3.eth.accounts[0]})

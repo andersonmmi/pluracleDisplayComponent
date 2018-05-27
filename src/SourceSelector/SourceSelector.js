@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import getWeb3 from '../utils/getWeb3';
-import Web3 from 'web3';
+// import Web3 from 'web3';
 import _ from 'lodash';
 import './SourceSelector.css'
 
@@ -354,7 +354,7 @@ componentWillMount() {
     // console.log(oracleContract);
     oracleContract.getOracleList("signed:uint256", (error, result) => {
       if(!error){
-          console.log(JSON.stringify(result));
+          // console.log(JSON.stringify(result));
           _.each(result, (value) => {
               array.push(value);
           })
@@ -388,7 +388,7 @@ componentWillMount() {
               });
 
           });
-          console.log(typeof(infoArray));
+          // console.log(typeof(infoArray));
           this.setState({infoArray: infoArray})
           this.setData(this.state.infoArray);
 
