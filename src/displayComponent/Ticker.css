@@ -1,8 +1,6 @@
- /* .displayComponent {
-   background-color: black;
-   color: green;
-   border: 2px solid black;
-} */
+ .displayComponent {
+   background-color: rgba(0, 0, 0, 0.9)
+}
 
 * {
   box-sizing: border-box;

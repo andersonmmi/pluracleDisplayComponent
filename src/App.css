@@ -3,10 +3,16 @@
 body,
 .pure-g [class*=pure-u] {
   font-family: 'Open Sans', sans-serif;
+
 }
 
 h1, h2, h3 {
   font-family: 'Oswald', 'Arial Narrow', sans-serif;
+}
+
+.pure-g {
+  display: flex;
+  align-items: center;
 }
 
 code {
@@ -20,6 +26,11 @@ code {
   box-sizing: border-box;
   width: 100%;
   padding: 45px 20px;
+  background-image: url('https://raw.githubusercontent.com/ethbuenosaires/website/master/images/twitter-card-icon.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
 }
 
 .pure-button-primary {
@@ -65,4 +76,10 @@ code {
 .navbar .uport-logo {
   height: 16px;
   margin-right: 10px;
+}
+
+.pure-u-1-1 {
+  color: darkorange;
+  background-color: rgba(10,25,44,0.7);
+  height: min-content;
 }
