@@ -456,17 +456,17 @@ reportNetwork = (netId) => {
 }
 
 accountListener = () => {
-  // var account = web3.eth.accounts[0];
-  setInterval(() => {
-    if (this.state.web3.eth.accounts[0] !== this.state.account) {
-      // console.log('this.state.web3.eth.accounts[0]: ', this.state.web3.eth.accounts[0]);
-      // console.log('this.state.account: ', this.state.account)
-      // console.log('this.state.web3:', this.state.web3);
-      // account = web3.eth.accounts[0];
-      // updateInterface();
-      this.setState({account: this.state.web3.eth.accounts[0]})
-    }
-  }, 2000);
+//   // var account = web3.eth.accounts[0];
+//   setInterval(() => {
+//     if (this.state.web3.eth.accounts[0] !== this.state.account) {
+//       // console.log('this.state.web3.eth.accounts[0]: ', this.state.web3.eth.accounts[0]);
+//       // console.log('this.state.account: ', this.state.account)
+//       // console.log('this.state.web3:', this.state.web3);
+//       // account = web3.eth.accounts[0];
+//       // updateInterface();
+//       this.setState({account: this.state.web3.eth.accounts[0]})
+//     }
+//   }, 2000);
 }
 
 
@@ -524,31 +524,7 @@ setOracleList = (data) => {
 }
 
 setData = (data) => {
-    // let resultArray = Object.values(data);
-    // let a = [];
-    // let b = [];
-    // let c = [];
-    // let d = [];
-    // let e = [];
-    //
-    // resultArray.map((f)=>console.log(f))
-    // // a.push(resultArray[0][0]);
-    // // console.log(typeof(data[0][0]));
-    // // b.push(resultArray[0][1]);
-    // // c.push(resultArray[0][2]);
-    // // d.push(resultArray[0][3]);
-    // // e.push(resultArray[0][4]);
-    //
-    // this.setState({
-    //   owner: a,
-    //   oracleType: b,
-    //   description: c,
-    //   data: d,
-    //   lastUpdated: e,
-    // });
 }
-
-
 
   render() {
 
@@ -557,11 +533,8 @@ setData = (data) => {
     _.each(this.state.data, (value, index) => {
       data.push(
         <div className="ticker__item" key={index}>
-          {/*{this.state.owner[index]}+
-          {this.state.oracleType[index]}+*/}
           {this.state.description[index]}:{' '}
           {this.state.data[index]}
-          {/*{this.state.lastUpdated[index]}*/}
         </div>
       )
     })

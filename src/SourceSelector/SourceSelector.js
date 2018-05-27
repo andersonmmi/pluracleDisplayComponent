@@ -418,7 +418,6 @@ componentWillMount() {
   // console.log(this.state.web3);
 }
 // END componentWillMount //
-//TODO: refactor componentDidMount to eliminate flashing
 componentDidMount() {
     setInterval(()=>{
         web3 = this.state.web3;
@@ -473,25 +472,16 @@ setOracleList = (data) => {
 }
 
 setData = (data) => {
-    // owner, oracleType, description, data, lastUpdated
-    // this.setState({
-    //   owner: String(data[0]).split(','),
-    //   oracleType: String(data[1]).split(','),
-    //   description: String(data[2]).split(','),
-    //   data: String(data[3]).split(','),
-    //   lastUpdated: String(data[4]).split(','),
-    // });
 }
 
     render() {
 
         let TableRows = []
-
+        // owner, oracleType, description, data, lastUpdated
         _.each(this.state.oracleList, (value, index) => {
           TableRows.push(
             <tr key={index}>
               <td>{this.state.description[index]}</td>
-
               <td>{this.state.oracleType[index]}</td>
               <td>{this.state.lastUpdated[index]}</td>
             </tr>
@@ -504,7 +494,6 @@ setData = (data) => {
                 <thead>
                 <tr>
                   <th>Contract Name</th>
-
                   <th>Type</th>
                   <th>Updated</th>
                 </tr>
