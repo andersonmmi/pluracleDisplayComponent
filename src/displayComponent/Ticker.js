@@ -470,34 +470,52 @@ accountListener = () => {
 }
 
 
-  // componentDidMount() {
-  //   setInterval(()=>{
-  //       web3 = this.state.web3;
-  //       let array = []
-  //       let infoArray = []
-  //       let oracleContract = web3.eth.contract(abi).at(address);
-  //       // console.log(oracleContract);
-  //       oracleContract.getOracleList("signed:uint256", (error, result) => {
-  //         if(!error){
-  //             console.log("!!UPDATED TICKER!!");
-  //             array.push(result);
-  //             this.setOracleList(array);
-  //             oracleContract.getOracleInfo(this.state.oracleList[0],(error, result) => {
-  //                 if(!error){
-  //                     console.log(JSON.stringify(result));
-  //                     this.setData(result);
-  //                 }else{
-  //                     console.error(error);
-  //                 }
-  //             });
-  //         }else{
-  //             console.error(error);
-  //         }
-  //     });
-  //   },
-  //     3000
-  //   )
-  // }
+  componentDidMount() {
+      setInterval(()=>{
+          web3 = this.state.web3;
+          let array = []
+          let oracleContract = web3.eth.contract(abi).at(address);
+          oracleContract.getOracleList("signed:uint256", (error, result) => {
+              if(!error){
+                _.each(result, (value) => {
+                    array.push(value);
+                })
+                this.setOracleList(array);
+                this.setState({
+                    owner: [],
+                    oracleType: [],
+                    description: [],
+                    data: [],
+                    lastUpdated: []
+                })
+                _.each(this.state.oracleList, (value, index)=>{
+                    oracleContract.getOracleInfo(this.state.oracleList[index],(error, result) => {
+                        if(!error){
+                            let owner = result[0];
+                            let oracleType = result[1]
+                            let description = result[2];
+                            let data = result[3];
+                            let lastUpdated = result[4];
+                            this.setState({
+                                owner: _.concat(this.state.owner, owner),
+                                oracleType: _.concat(this.state.oracleType, oracleType),
+                                description: _.concat(this.state.description, description),
+                                data: _.concat(this.state.data, data.toNumber()),
+                                lastUpdated: _.concat(this.state.lastUpdated, lastUpdated ? lastUpdated.toNumber() : 0)
+                            })
+                        }else{
+                            console.error(error);
+                        }
+                    });
+                });
+            }else{
+                console.error(error);
+            }
+        });
+      },
+          15000
+      )
+  }
 
 setOracleList = (data) => {
   this.setState({
