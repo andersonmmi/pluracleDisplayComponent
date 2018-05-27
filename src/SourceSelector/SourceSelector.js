@@ -414,6 +414,7 @@ componentWillMount() {
 // END componentWillMount //
 componentDidMount() {
     setInterval(()=>{
+        console.log("All oracles up to date as of "+Date.now()+"!");
         web3 = this.state.web3;
         let array = []
         let oracleContract = web3.eth.contract(abi).at(address);
