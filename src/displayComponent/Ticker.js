@@ -97,15 +97,31 @@ class Ticker extends Component {
         if(!error){
             console.log(JSON.stringify(result));
             array.push(web3.toDecimal(result).toString());
-            array.push(web3.toDecimal(result).toString());
-            array.push(web3.toDecimal(result).toString());
-
             this.setComponentState(array);
-
         }else{
             console.error(error);
         }
       });
+      // @dev repeat 2x
+      oracleContract.data((error, result) => {
+        if(!error){
+            console.log(JSON.stringify(result));
+            array.push(web3.toDecimal(result).toString());
+            this.setComponentState(array);
+        }else{
+            console.error(error);
+        }
+      });
+      oracleContract.data((error, result) => {
+        if(!error){
+            console.log(JSON.stringify(result));
+            array.push(web3.toDecimal(result).toString());
+            this.setComponentState(array);
+        }else{
+            console.error(error);
+        }
+      });
+
 
       this.setState({
         web3: results.web3,
@@ -174,18 +190,41 @@ accountListener = () => {
 
 
   componentDidMount() {
-    // setInterval(()=>{
-    //     var data = peopleContract.getPeople();
-    //     this.setState({
-    //       firstNames: String(data[0]).split(','),
-    //       lastNames: String(data[1]).split(','),
-    //       ages: String(data[2]).split(',')
-    //     });
-    //     // console.log(Date.now());
-    //
-    //   },
-    //   30000
-    // )
+    setInterval(()=>{
+      web3 = this.state.web3;
+      let array = []
+      let oracleContract = web3.eth.contract(abi).at(address);
+      oracleContract.data((error, result) => {
+        if(!error){
+            console.log(JSON.stringify(result));
+            array.push(web3.toDecimal(result).toString());
+            this.setComponentState(array);
+        }else{
+            console.error(error);
+        }
+      });
+// @dev repeat 2x
+      oracleContract.data((error, result) => {
+        if(!error){
+            console.log(JSON.stringify(result));
+            array.push(web3.toDecimal(result).toString());
+            this.setComponentState(array);
+        }else{
+            console.error(error);
+        }
+      });
+      oracleContract.data((error, result) => {
+        if(!error){
+            console.log(JSON.stringify(result));
+            array.push(web3.toDecimal(result).toString());
+            this.setComponentState(array);
+        }else{
+            console.error(error);
+        }
+      });
+      },
+      3000
+    )
   }
 
 setComponentState = (data) => {
