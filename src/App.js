@@ -96,7 +96,7 @@ accountListener = () => {
         <main className="container">
           <div className="pure-g">
             <div className="pure-u-1-1">
-              <h1>Pluracle All the Oracles!</h1>
+              <h1>Pluracle All the Oracles on Kovan!</h1>
 
               <SourceSelector />
 
