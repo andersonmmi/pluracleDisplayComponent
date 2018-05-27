@@ -360,19 +360,19 @@ class Ticker extends Component {
             console.log(JSON.stringify(result));
             array.push(result);
             this.setOracleList(array);
+            oracleContract.getOracleInfo(this.state.oracleList[0],(error, result) => {
+                if(!error){
+                    console.log(JSON.stringify(result));
+                    
+                }else{
+                    console.error(error);
+                }
+            });
         }else{
             console.error(error);
         }
       });
-      // oracleContract.getOracleInfo(this.state.oracleList,(error, result) => {
-      //     if(!error){
-      //         console.log(JSON.stringify(result));
-      //         infoArray.push(result);
-      //         this.setData(infoArray);
-      //     }else{
-      //         console.error(error);
-      //     }
-      // });
+
       // @dev repeat 2x
 
       this.setState({
