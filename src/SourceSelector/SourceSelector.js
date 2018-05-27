@@ -328,78 +328,85 @@ class SourceSelector extends Component {
   constructor(props) {
   super(props);
   this.state = {
+      owner: [],
+      oracleType: [],
+      description: [],
+      data: [],
+      lastUpdated: [],
     oracleList: [],
+    web3: null,
   };
 }
 
 componentWillMount() {
   /** Get network provider and web3 instance.
    See utils/getWeb3 for more info. */
-  getWeb3
-  .then(results => {
-    // console.log('results: ', results);
-    web3 = results.web3;
-    let array = []
-// @dev building the api call
-    let oracleContract = web3.eth.contract(abi).at(address);
-    console.log(oracleContract);
-    oracleContract.getOracleList("signed:uint256", (error, result) => {
-      if(!error){
-          console.log(JSON.stringify(result));
-          array.push(result);
-          this.setOracleList(array);
-      }else{
-          console.error(error);
-      }
-    });
-    this.setState({
-      web3: results.web3,
-    })
-  })
-  .catch(error => {
-    console.log(error)
-    this.setState({
-      web3error: error.error,
-      data: "catch"
-    })
-  })
+   getWeb3
+   .then(results => {
+   // console.log('results: ', results);
+   web3 = results.web3;
+   let array = []
+   let infoArray = []
+   // @dev building the api call
+   let oracleContract = web3.eth.contract(abi).at(address);
+   console.log(oracleContract);
+   oracleContract.getOracleList("signed:uint256", (error, result) => {
+   if(!error){
+       console.log(JSON.stringify(result));
+       array.push(result);
+       this.setOracleList(array);
+       oracleContract.getOracleInfo(this.state.oracleList[0],(error, result) => {
+           if(!error){
+               console.log(JSON.stringify(result));
+               this.setData(result);
+           }else{
+               console.error(error);
+           }
+       });
+   }else{
+       console.error(error);
+   }
+   });
+   this.setState({
+   web3: results.web3,
+   })
+   })
+   .catch(error => {
+   console.log(error)
+   this.setState({
+   web3error: error.error,
+   data: "catch"
+   })
+   })
 }
 
 componentDidMount() {
     setInterval(()=>{
-      /** Get network provider and web3 instance.
-       See utils/getWeb3 for more info. */
-      getWeb3
-      .then(results => {
-        // console.log('results: ', results);
-        web3 = results.web3;
-        let array = []
-    // @dev building the api call
-        let oracleContract = web3.eth.contract(abi).at(address);
-        // console.log(oracleContract);
-        oracleContract.getOracleList("signed:uint256", (error, result) => {
-          if(!error){
-              console.log("!!UPDATED TABLE!!");
-              array.push(result);
-              this.setOracleList(array);
-          }else{
-              console.error(error);
-          }
-        });
-        this.setState({
-          web3: results.web3,
-        })
-      })
-      .catch(error => {
-        console.log(error)
-        this.setState({
-          web3error: error.error,
-          data: "catch"
-        })
-      })
-    },
-        2000
-    )
+    web3 = this.state.web3;
+    let array = []
+    let infoArray = []
+    let oracleContract = web3.eth.contract(abi).at(address);
+    // console.log(oracleContract);
+    oracleContract.getOracleList("signed:uint256", (error, result) => {
+      if(!error){
+          console.log("!!UPDATED TABLE!!");
+          array.push(result);
+          this.setOracleList(array);
+          oracleContract.getOracleInfo(this.state.oracleList[0],(error, result) => {
+              if(!error){
+                  console.log(JSON.stringify(result));
+                  this.setData(result);
+              }else{
+                  console.error(error);
+              }
+          });
+      }else{
+          console.error(error);
+      }
+  });
+},
+  3000
+)
 }
 
 setOracleList = (data) => {
@@ -408,16 +415,16 @@ setOracleList = (data) => {
   })
 }
 
-  handleClick = (event) => {
-    console.log(event);
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
+setData = (data) => {
+    // owner, oracleType, description, data, lastUpdated
     this.setState({
-      [name]: value
+      owner: String(data[0]).split(','),
+      oracleType: String(data[1]).split(','),
+      description: String(data[2]).split(','),
+      data: String(data[3]).split(','),
+      lastUpdated: String(data[4]).split(','),
     });
-  }
+}
 
     render() {
 
@@ -426,7 +433,10 @@ setOracleList = (data) => {
         _.each(this.state.oracleList, (value, index) => {
           TableRows.push(
             <tr key={index}>
+              <td>{this.state.description[index]}</td>
               <td>{this.state.oracleList[index]}</td>
+              <td>{this.state.oracleType[index]}</td>
+              <td>{this.state.lastUpdated[index]}</td>
             </tr>
           )
         })
@@ -436,7 +446,10 @@ setOracleList = (data) => {
             <table className="App-table">
                 <thead>
                 <tr>
+                  <th>Contract Name</th>
                   <th>Oracle Address</th>
+                  <th>Type</th>
+                  <th>Updated</th>
                 </tr>
                 </thead>
                 <tbody>
