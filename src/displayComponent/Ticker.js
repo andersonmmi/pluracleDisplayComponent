@@ -491,6 +491,8 @@ setOracleList = (data) => {
 
 setData = (data) => {
     console.log("THIS IS DATA: "+ JSON.stringify(data));
+    console.log(data[0]);
+    console.log(data[0][0]);
     let a = [];
     let b = [];
     let c = [];
@@ -498,10 +500,11 @@ setData = (data) => {
     let e = [];
 
     a.push(data[0][0]);
-    b.push(data[0][0]);
-    c.push(data[0][0]);
-    d.push(data[0][0]);
-    e.push(data[0][0]);
+    console.log(typeof(data[0][0]));
+    b.push(data[0][1]);
+    c.push(data[0][2]);
+    d.push(data[0][3]);
+    e.push(data[0][4]);
 
     this.setState({
       owner: a,
