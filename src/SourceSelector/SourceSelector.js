@@ -322,7 +322,7 @@ let abi = [
       "type": "function"
     }
   ];
-let address = '0x1dfe593f473f3a9739dc0da81eefdd8294db4db1';
+let address = '0x895a63594d8e98c977a94ce54564b90bb98a3aa0';
 
 
 
@@ -475,6 +475,7 @@ setData = (data) => {
         _.each(this.state.oracleList, (value, index) => {
           TableRows.push(
             <tr key={index}>
+              <td>{this.state.oracleList[index]}</td>
               <td>{this.state.description[index]}</td>
               <td>{this.state.oracleType[index]}</td>
               <td>{this.state.lastUpdated[index]}</td>
@@ -487,7 +488,8 @@ setData = (data) => {
             <table className="App-table">
                 <thead>
                 <tr>
-                  <th>Contract Name</th>
+                  <th>Contract Address</th>
+                  <th>Description</th>
                   <th>Type</th>
                   <th>Updated</th>
                 </tr>

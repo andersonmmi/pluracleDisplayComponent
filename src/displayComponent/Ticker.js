@@ -325,7 +325,7 @@ let abi = [
       "type": "function"
     }
   ];
-let address = '0x1dfe593f473f3a9739dc0da81eefdd8294db4db1';
+let address = '0x895a63594d8e98c977a94ce54564b90bb98a3aa0';
 // let oracleContract = web3.eth.contract(abi).at(address);
 // web3.eth.defaultAccount = web3.eth.accounts[0];
 
