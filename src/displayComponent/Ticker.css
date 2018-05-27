@@ -51,8 +51,8 @@
   animation-timing-function: linear;
   -webkit-animation-name: ticker;
   animation-name: ticker;
-  -webkit-animation-duration: 12s;
-  animation-duration: 12s;
+  -webkit-animation-duration: 15s;
+  animation-duration: 15s;
 }
 .ticker-wrap .ticker__item {
   display: inline-block;
